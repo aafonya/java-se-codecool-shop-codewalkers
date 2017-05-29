@@ -11,10 +11,23 @@ import com.codecool.shop.model.ProductCategory;
 import com.codecool.shop.model.Supplier;
 
 /**
- * Created by judit on 18.05.17.
+ * <h1>Populate Data</h1>
+ * fullfills the memory with productdata
+ * <p>
+ * uses Data Access Objects
+ *
+ * @author  Codewalkers
+ * @since   2017-05
  */
 public class PopulateData {
 
+    /**
+     * FulFills DataStores
+     * <p>
+     * Uploads the data about Products, ProductCategories and Suppliers
+     * <p>
+     *
+     */
     public static void populateData() {
 
         ProductDao productDataStore = ProductDaoMem.getInstance();

@@ -19,13 +19,30 @@ public class ProductDaoWithJdbc implements ProductDao {
 
     private static ProductDaoWithJdbc instance = null;
 
+    /**
+     * Database URL for JDBC connection
+     */
     private static final String DATABASE = "jdbc:postgresql://localhost:5432/codecoolshop";
+
+    /**
+     * Database credential - DB username - from config file
+     */
     private static final String DB_USER = readConfigFile().get(0);
+
+    /**
+     * Database credential - DB password - from config file
+     */
     private static final String DB_PASSWORD = readConfigFile().get(1);
 
     private ProductCategoryDaoJDBC prodCatDaoJDBC = ProductCategoryDaoJDBC.getInstance();
     private SupplierDaoJDBC supplierDaoJDBC = SupplierDaoJDBC.getInstance();
 
+    /**
+     * Reads config data from txt file
+     *
+     * @return List of lines of the config file
+     * @exception IOException if config file not found
+     */
     private static List<String> readConfigFile() {
         try {
             return Files.readAllLines(Paths.get("src/dbConfig.txt"), Charset.defaultCharset());

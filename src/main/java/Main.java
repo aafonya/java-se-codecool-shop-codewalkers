@@ -11,10 +11,24 @@ import javax.json.JsonObject;
 
 import static spark.Spark.*;
 import static spark.debug.DebugScreen.enableDebugScreen;
-
+/**
+ * <h1>Main</h1>
+ * Main Class - contains only the main method
+ * <p>
+ * responsible for starting the web application
+ * </p>
+ *
+ * @author  Codewalkers
+ * @since   2017-05
+ */
 public class Main {
 
-
+    /**
+     * main method - containing default server settings and routes
+     * <p>
+     * The main building block of our Spark application, the set of
+     * our routes.
+     */
     public static void main(String[] args) {
 
         // default server settings

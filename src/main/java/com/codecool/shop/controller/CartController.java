@@ -9,9 +9,25 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by judit on 02.05.17.
+ * Controlling the list of products that are shown on the actual Shopping Cart
+ * <p>
+ * Responsible for show the products, choosed by the customer.
+ *  </p>
+ *
  */
 public class CartController {
+    /**
+     * Renders all products from the shopping cart.
+     * <p>
+     * Returns a Stark ModelAndView object, what contains information about the products to be rendered
+     * in the object params. And it sets the name for the route which will call the rendering.
+     * <p>
+     *
+     * @param  req Request object, provides information about the HTTP request
+     * @param res Response object, provides information about the HTTP request
+     * @param order Order object which contains the lines of the shopping cart
+     * @return ModelAndView object to be rendered (it sets the name of the view and the model object to be rendered).
+     */
     public static ModelAndView renderCart(Request req, Response res, Order order) {
 //        ProductDao productDataStore = ProductDaoMem.getInstance();
 //        ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();

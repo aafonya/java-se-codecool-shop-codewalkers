@@ -11,14 +11,35 @@ import java.sql.Statement;
 import java.util.List;
 
 /**
- * Created by judit on 18.05.17.
+ * <h1>Init Test Shop</h1>
+ * Initializes a new database connection for testing
+ * <p>
+ * responsible for create connection with the database testshop for test methods
+ * </p>
+ *
+ * @author  Codewalkers
+ * @since   2017-05
  */
 public class InitTestShop {
 
+    /**
+     * Database URL for JDBC connection
+     */
     public String DATABASE = "jdbc:postgresql://localhost:5432/testshop";
+
+    /**
+     * Database credential - DB username - from config file
+     */
     private final String DB_USER = readConfigFile().get(0);
+
+    /**
+     * Database credential - DB password - from config file
+     */
     private final String DB_PASSWORD = readConfigFile().get(1);
 
+    /**
+     * Drops old and creates new table in database testshop
+     */
     public void initDbForTestshop() {
         String query =
                 "\n" +
@@ -58,6 +79,12 @@ public class InitTestShop {
         executeQuery(query);
     }
 
+    /**
+     * Reads config data from txt file
+     *
+     * @return List of lines of the config file
+     * @exception IOException if config file not found
+     */
     private List<String> readConfigFile() {
         try {
             return Files.readAllLines(Paths.get("src/dbConfig.txt"), Charset.defaultCharset());
@@ -68,6 +95,12 @@ public class InitTestShop {
         return null;
     }
 
+    /**
+     * Creates connection with postgreSQL database
+     *
+     * @return Connection object
+     * @exception SQLException if connecting is failed
+     */
     private Connection getConnection() throws SQLException {
         return DriverManager.getConnection(
                 DATABASE,
@@ -75,6 +108,12 @@ public class InitTestShop {
                 DB_PASSWORD);
     }
 
+    /**
+     * Transmits the created query object to the database for execution
+     *
+     * @param query SQL query to be executed
+     * @exception SQLException if connecting is failed - catches the exception
+     */
     private void executeQuery(String query) {
         try (Connection connection = getConnection();
              Statement statement = connection.createStatement();
