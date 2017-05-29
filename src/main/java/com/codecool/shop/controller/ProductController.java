@@ -7,6 +7,8 @@ import com.codecool.shop.dao.implementation.ProductCategoryDaoJDBC;
 import com.codecool.shop.dao.implementation.ProductDaoWithJdbc;
 import com.codecool.shop.dao.implementation.SupplierDaoJDBC;
 import com.codecool.shop.model.Order;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -22,6 +24,8 @@ import java.util.Map;
  *
  */
 public class ProductController {
+
+    private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 
     /**
      * Instance of the Product Data Access Object
@@ -78,6 +82,9 @@ public class ProductController {
         params.put("categories", productCategoryDataStore.getAll());
         params.put("category", productCategoryDataStore.find(id));
         params.put("products", productDataStore.getBy(productCategoryDataStore.find(id)));
+
+        logger.warn("Filtered by Category: " + productCategoryDataStore.find(id));
+
         return new ModelAndView(params, "product/index");
     }
 
@@ -100,6 +107,9 @@ public class ProductController {
         paramsSup.put("suppliers", supplierDataStore.getAll());
         paramsSup.put("supplier", supplierDataStore.find(id));
         paramsSup.put("products", productDataStore.getBy(supplierDataStore.find(id)));
+
+        logger.warn("Filtered by Supplier: " + supplierDataStore.find(id));
+
         return new ModelAndView(paramsSup, "product/index");
 
     }

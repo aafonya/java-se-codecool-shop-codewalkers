@@ -1,6 +1,8 @@
 package com.codecool.shop.controller;
 
 import com.codecool.shop.model.Order;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -28,6 +30,9 @@ public class CartController {
      * @param order Order object which contains the lines of the shopping cart
      * @return ModelAndView object to be rendered (it sets the name of the view and the model object to be rendered).
      */
+
+    private static final Logger logger = LoggerFactory.getLogger(CartController.class);
+
     public static ModelAndView renderCart(Request req, Response res, Order order) {
 //        ProductDao productDataStore = ProductDaoMem.getInstance();
 //        ProductCategoryDao productCategoryDataStore = ProductCategoryDaoMem.getInstance();
